@@ -1,0 +1,13 @@
+int port = 1231;
+void setup_server(bool local = false)
+{
+if(!local)
+{
+n.setup_server(port,20,100);
+}
+else
+{
+n.setup_local_server(port,20,100);
+}
+speak("server online");
+}

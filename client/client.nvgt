@@ -1,0 +1,25 @@
+#include"includes/functions.nvgt"
+#include"includes/packat_parser.nvgt"
+#include"includes/net.nvgt"
+#include"includes/stuff.nvgt"
+#include"includes/dialog.nvgt"
+network n;
+network_event e;
+string name;
+void main()
+{
+show_window("client");
+name = input_box("name","enter your name to be used on the server");
+connect();
+while(true)
+{
+wait(5);
+e = n.request();
+netloop();
+if(key_pressed(KEY_ESCAPE))
+{
+speak("exiting");
+exit();
+}
+}
+}

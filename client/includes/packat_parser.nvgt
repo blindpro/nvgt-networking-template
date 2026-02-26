@@ -1,0 +1,22 @@
+//This is the code to handle all packets incoming to the client.
+void netloop()
+{
+if(e.type == event_connect)
+{
+connected = true;
+send("online "+name,0);
+}
+if(e.type == event_disconnect)
+{
+send("offline",0);
+connected = false;
+}
+//This is the speech buffer. Everything sent to channel 0 is spoken.
+if(e.type == event_receive)
+{
+if(e.channel == 0)
+{
+speak(e.message);
+}
+}
+}

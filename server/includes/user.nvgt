@@ -1,0 +1,57 @@
+user[] users;
+//This is the class where you can store all data for users on your server. This is where you store things like name, x, y, anything that relates to data for all players.
+class user
+{
+string name;
+int id;
+user(string name, int id)
+{
+this.name = name;
+this.id = id;
+}
+user()
+{
+name = "none";
+id = -1;
+}
+}
+void create_user(string name, int id)
+{
+user u(name,id);
+users.insert_last(u);
+}
+//Functions to get the index of a user, given a name or a peer ID.
+int get_index(string name)
+{
+for(int i = 0; i<users.length(); i++)
+{
+if(users[i].name == name)
+{
+return i;
+}
+}
+return -1;
+}
+int get_index(int id)
+{
+for(int i = 0; i<users.length(); i++)
+{
+if(users[i].id == id)
+{
+return i;
+}
+}
+return -1;
+}
+//Function to return the users name given a peer ID. This isn't really needed, but why not.
+string get_name(int id)
+{
+for(int i = 0; i<users.length(); i++)
+{
+if(users[i].id == id)
+{
+return users[i].name;
+}
+}
+return "";
+}

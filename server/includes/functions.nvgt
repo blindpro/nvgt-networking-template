@@ -1,0 +1,4 @@
+void output(string text, int id)
+{
+n.send(id,text,0);
+}

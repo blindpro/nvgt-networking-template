@@ -1,0 +1,19 @@
+//This code is to parse incoming packats to the server. It is called in the main loop.
+void netloop()
+{
+if(e.type == event_receive and e.channel == 0)
+{
+string[] parsed = e.message.split(" ");
+//All code for channel 0 goes in this block.
+if(parsed[0] == "online")
+{
+output(parsed[1]+" just connected",0);
+create_user(parsed[1],e.peer_id);
+}
+else if(parsed[0] == "offline")
+{
+string name = get_name(e.peer_id);
+output(name+" just went offline",0);
+}
+}
+}

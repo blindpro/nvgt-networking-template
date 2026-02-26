@@ -1,0 +1,8 @@
+bool connected = false;
+string host = "localhost";
+int port = 1231;
+void connect()
+{
+n.setup_client(20,20);
+n.connect(host,port);
+}
