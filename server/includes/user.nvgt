@@ -55,3 +55,19 @@ return users[i].name;
 }
 return "";
 }
+bool valadate_name(string name)
+{
+int count = 0;
+for(int i = 0; i<users.length(); i++)
+{
+if(users[i].name == name)
+{
+count++;
+}
+}
+if(count>1)
+{
+return false;
+}
+return true;
+}

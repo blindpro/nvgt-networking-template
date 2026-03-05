@@ -1,3 +1,6 @@
+//channnels
+const int speech_channel = 0;
+const int system_channel = 1;
 //This code is to parse incoming packats to the server. It is called in the main loop.
 void netloop()
 {
@@ -7,8 +10,16 @@ string[] parsed = e.message.split(" ");
 //All code for channel 0 goes in this block.
 if(parsed[0] == "online")
 {
+if(!valadate_name(parsed[1]))
+{
+output("This name is in use. Please use another name.",e.peer_id);
+send(e.peer_id,"drop_conection",system_channel);
+}
+else
+{
 output(parsed[1]+" just connected",0);
 create_user(parsed[1],e.peer_id);
+}
 }
 else if(parsed[0] == "offline")
 {

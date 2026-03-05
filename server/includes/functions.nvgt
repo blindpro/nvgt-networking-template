@@ -1,4 +1,23 @@
 void output(string text, int id)
 {
-n.send(id,text,0);
+n.send(id,text,speech_channel);
+}
+void send(int id, string data, int channel)
+{
+if(get_index(id) == -1 and id !=0)
+{
+output("warning! Atempted to send packat to peer ID that is not connected to the server. Packat name: "+data,0);
+return;
+}
+n.send(id,data,channel);
+}
+void send_exclude(int id, string data, int channel)
+{
+for(int i = 0; i<users.length(); i++)
+{
+if(users[i].id != id)
+{
+send(id,data,channel);
+}
+}
 }
