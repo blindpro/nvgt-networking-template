@@ -2,8 +2,8 @@ void send(string data, int channel, bool reliable = true)
 {
 if(!connected)
 {
-throw("Error! Atempted to send packat before conection  with server could be established. Please make sure you are not sending packats to the server before you are connected, or after your disconnected.");
-exit();
+speak("warning! Atempted to send packat before conection  with server could be established. Please make sure you are not sending packats to the server before you are connected, or after your disconnected. Packat name: "+data);
+return;
 }
 n.send(0,data,channel,reliable);
 }
