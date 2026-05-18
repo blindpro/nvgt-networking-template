@@ -1,13 +1,16 @@
 timer conectiontimer;
-//channels
-const int system_channel = 0;
 //This is the code to handle all packets incoming to the client.
 void netloop()
+{
+handle_events();
+handle_system_channel();
+}
+void handle_events()
 {
 if(e.type == event_connect)
 {
 connected = true;
-send("online "+name,system_channel);
+send("online "+name,0);
 }
 if(conectiontimer.elapsed>=10000 and connected == false)
 {
@@ -16,16 +19,12 @@ exit();
 }
 if(e.type == event_disconnect)
 {
-send("offline",system_channel);
+send("offline",0);
 connected = false;
 }
-//This is the speech buffer. Everything sent to channel 0 is spoken.
-if(e.type == event_receive)
-{
-if(e.channel == 0)
-{
-speak(e.message);
 }
+void handle_system_channel()
+{
 if(e.channel == 1)
 {
 string[] parsed = e.message.split(" ");
@@ -35,6 +34,15 @@ connected = false;
 dlg("Your conection was closed by the server");
 exit();
 }
+}
+}
+void handle_speech_channel()
+{
+if(e.type == event_receive)
+{
+if(e.channel == 0)
+{
+speak(e.message);
 }
 }
 }
